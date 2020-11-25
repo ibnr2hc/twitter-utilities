@@ -5,7 +5,7 @@ class Search:
     def __init__(self, client):
         self.client = client
 
-    def searchUserByFF(self, screen_name, keyword):
+    def searchUserByFF(self, screen_name, keywords):
         """Keywordに合致するフォローフォロワー情報を取得する
     
         Args:
@@ -30,7 +30,7 @@ class Search:
         # TODO: 重複するユーザーは多重でリストに入らないようにする
         hit_users = []
         for follower in ffs:
-            if self._is_compare(follower, keyword.lower()):
+            if self._is_compare(follower, keywords):
                 hit_users.append({
                     "screen_name": follower["screen_name"],
                     "name": follower["name"]
@@ -40,13 +40,14 @@ class Search:
         return hit_users
 
 
-    def _is_compare(self, user, keyword):
+    def _is_compare(self, user, keywords):
         """Keywordがscreen_name, description, nameのいずれかと部分一致した場合はTrueを返す
         """
-        if keyword in str(user["screen_name"]).lower():
-            return True
-        if keyword in str(user["description"]).lower():
-            return True
-        if keyword in str(user["name"]).lower():
-            return True
+        for keyword in keywords:
+            if keyword in str(user["screen_name"]).lower():
+                return True
+            if keyword in str(user["description"]).lower():
+                return True
+            if keyword in str(user["name"]).lower():
+                return True
 

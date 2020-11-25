@@ -9,13 +9,7 @@ class Twitter:
 
     def searchUserByFF(self, screen_name, keyword):
         print("----- Start -----")
-        users = self.client.search.searchUserByFF(screen_name, keyword)
-        
-        if users:
-            print(f"Hit user by {keyword}\n\n")
-        for user in users:
-            print(f"- {user['name']} (@{user['screen_name']})")
-
+        self.client.search.searchUserByFF(screen_name, keyword)
         print("----- Finished -----")
 
 

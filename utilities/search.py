@@ -35,6 +35,7 @@ class Search:
                     "screen_name": follower["screen_name"],
                     "name": follower["name"]
                 })
+                print(f"- {follower['name']} (@{follower['screen_name']})")
 
         return hit_users
 

@@ -8,6 +8,7 @@ class Twitter:
         self.client = client.Client()
 
     def searchUserByFF(self, screen_name, keyword):
+        keyword = (keyword,) if not isinstance(keyword, tuple) else keyword
         print("----- Start -----")
         self.client.search.searchUserByFF(screen_name, keyword)
         print("----- Finished -----")
